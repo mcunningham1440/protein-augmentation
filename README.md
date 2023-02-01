@@ -1,6 +1,6 @@
 # Comparison of Sequence Augmentation Techniques for Protein Classification Tasks
 
-This project is a comparison of proposed protein sequence augmentation techniques for synthetic minority class oversampling for protein classification tasks. Here, I evaluate the performance of several previously published augmentation methods on a set of classification challenges and find that...
+This project is a comparison of proposed protein sequence augmentation techniques for synthetic minority class oversampling in protein classification using machine learning. Here, I evaluate the performance of several previously published augmentation methods on a set of classification challenges and find that substituting a small percentage of the amino acids in a sequence with a chemically similar amino acid (dictionary substitution) results in small but consistent gains in performance on several protein classification tasks. Several other proposed methods, in contrast, result in decreases in performance. These results indicate that dictionary substitution may be an underutilized method for enhancing protein classification in sequence-based machine learning.
 
 ## Background
 
