@@ -16,6 +16,6 @@ Binary classification of proteins based on whether or not they bind metal ions w
 
 The dataset was randomly undersampled by 75% to improve computational tractability and then divided into 5 folds. Each was successively held out as the test set for model training, with the remaining 4 serving as the training set (5-fold cross-validation). To determine the generalizability of each augmentation's effect across model types, both a convolutional neural network (CNN) and a long short-term memory (LSTM) network were trained on the data and evaluated. Training proceeded until test loss had not improved for 2 epochs. Details of the data processing, models, and training methods can be found in the included Jupyter notebook.
 
-![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1a.png) ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1b.png)
+![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1a.png =75%x) ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1b.png =75%x)
 
 ## Conclusion
