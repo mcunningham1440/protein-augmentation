@@ -21,12 +21,27 @@ To determine the generalizability of each augmentation's effect across model typ
 ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1a.png)
 ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1b.png)
 
-**Figure 1**. Test AUC of models trained on data with different probabilities of amino acid substitution with **A** a similar amino acid or **B** alanine. Average of 5 folds. Note the differing vertical scales
+**Figure 1.** Test AUC of models trained on data with different probabilities of amino acid substitution with **A** a similar amino acid or **B** alanine. Average of 5 folds. Note the differing vertical scales
 
 Substituting similar amino acids during oversampling, known as dictionary substitution (Fig. 1A), resulted in small but consistent performance gains over simple oversampling at a 1%, 5%, and 15% probability of substitution, with the largest gain coming at 5%. Performance did not begin to fall substantially until the substitution probability reached 50%. Alanine substitution (Fig. 1B), by contrast, drastically reduced performance, particularly at substitution probabilities above 5%. At 15% and 50% substitution, AUC actually fell below 0.5, indicating that the model was performing worse than random chance. Given that only the positives in the training were oversampled, it is likely that this was due to the networks learning to recognize sequences with large numbers of alanines as positive, a feature which was not present in the test set. Performance curves were strikingly similar between the CNN and LSTM models, indicting that the performance changes induced by dictionary and alanine substitution are generally applicable across model architectures.
 
 These results demonstrated that dictionary substitution can enhance classification performance, a conclusion not clearly displayed in Shen et al. However, as dictionary substitution was not evaluated side-by-side with nucleotide substitution in Minot et al., it has not been shown which is superior. Using the same CNN and LSTM architectures, I compared the effect of the two substitution methods on performance in the metal ion binding task. Trigram substitution, or replacement of each amino acid with a randomly chosen codon which encodes it followed by tokenization of the codons as trigrams, performed the best in Minot et al. and was selected for usage in this study. As there are 61 nucleotide codons which code for amino acids, the tokenizer library size for nucleotide substitution is 61, while that for amino acid substitution methods such as dictionary substitution methods is 20. A  probability of 5% was used for dictionary substitution as it performed best in Fig. 1.
 
-**Figure 2**. Test AUC of models trained with 
+![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_2.png)
+
+**Figure 2.** Test AUC of models trained with different substitution methods. Average of 5 folds
+
+Dictionary substitution notably increased AUC for the LSTM model, consistent with the results shown in Fig. 1A, while not appreciably changing it for the CNN model. Nucleotide substitution, in contrast, resulted in a slight diminution of performance across both models. While this substitution method may improve model generalizability in other amino acid sequence classification or regression tasks, it appears to be counterproductive in this particular example of protein activity classification.
+
+To determine whether the increase in performance over baseline for 5% dictionary substitution was a consistent phenomenon, I conducted similar experiments using several other protein classification tasks (Table 1).
+
+| Task                 | Positives | Negatives | Database           | Description                                                          |
+| -------------------- | --------- | --------- | ------------------ | -------------------------------------------------------------------- |
+| Druggability         | 704       | 19708     | NIH Pharos         | Is the protein the target of an FDA-approved drug (labeled "Tclin")? |
+| Oxidoreductase       | 113       | 20299     | PANTHER            | Does the protein have oxidoreductase activity?                       |
+| Pol II transcription | 984       | 19428     | Gene Ontology (GO) | Is the protein involved in RNA polymerase II transcription?          |
+| Liver cancer         | 139       | 20273     | NIH Pharos         | Is the protein involved in liver cancer?                             |
+
+**Table 1.** Classification tasks used to assess dictionary substitution performance
 
 ## Conclusion
