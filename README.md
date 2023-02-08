@@ -21,7 +21,7 @@ To determine the generalizability of each augmentation's effect across model typ
 ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1a.png)
 ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_1b.png)
 
-**Figure 1.** Test AUC of models trained on data with different probabilities of amino acid substitution with **A** a similar amino acid or **B** alanine. Average of 5 folds. Note the differing vertical scales
+***Figure 1.** Test AUC of models trained on data with different probabilities of amino acid substitution with **A** a similar amino acid or **B** alanine. Average of 5 folds. Error bars reprsent standard error of the mean. Note the differing vertical scales*
 
 Substituting similar amino acids during oversampling, known as dictionary substitution (Fig. 1A), resulted in small but consistent performance gains over simple oversampling at a 1%, 5%, and 15% probability of substitution, with the largest gain coming at 5%. Performance did not begin to fall substantially until the substitution probability reached 50%. Alanine substitution (Fig. 1B), by contrast, drastically reduced performance, particularly at substitution probabilities above 5%. At 15% and 50% substitution, AUC actually fell below 0.5, indicating that the model was performing worse than random chance. Given that only the positives in the training were oversampled, it is likely that this was due to the networks learning to recognize sequences with large numbers of alanines as positive, a feature which was not present in the test set. Performance curves were strikingly similar between the CNN and LSTM models, indicting that the performance changes induced by dictionary and alanine substitution are generally applicable across model architectures.
 
@@ -29,7 +29,7 @@ These results demonstrated that dictionary substitution can enhance classificati
 
 ![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_2.png)
 
-**Figure 2.** Test AUC of models trained with different substitution methods. Average of 5 folds
+***Figure 2.** Test AUC of models trained with different substitution methods. Average of 5 folds. Error bars reprsent standard error of the mean*
 
 Dictionary substitution notably increased AUC for the LSTM model, consistent with the results shown in Fig. 1A, while not appreciably changing it for the CNN model. Nucleotide substitution, in contrast, resulted in a slight diminution of performance across both models. While this substitution method may improve model generalizability in other amino acid sequence classification or regression tasks, it appears to be counterproductive in this particular example of protein activity classification.
 
@@ -38,10 +38,16 @@ To determine whether the increase in performance over baseline for 5% dictionary
 | Task                 | Positives | Negatives | Database           | Description                                                          |
 | -------------------- | --------- | --------- | ------------------ | -------------------------------------------------------------------- |
 | Druggability         | 704       | 19708     | NIH Pharos         | Is the protein the target of an FDA-approved drug (labeled "Tclin")? |
-| Oxidoreductase       | 113       | 20299     | PANTHER            | Does the protein have oxidoreductase activity?                       |
 | Pol II transcription | 984       | 19428     | Gene Ontology (GO) | Is the protein involved in RNA polymerase II transcription?          |
 | Liver cancer         | 139       | 20273     | NIH Pharos         | Is the protein involved in liver cancer?                             |
 
-**Table 1.** Classification tasks used to assess dictionary substitution performance
+***Table 1.** Classification tasks used to assess dictionary substitution performance*
+
+For each task, the dataset was augmented with 5% dictionary substitution or simple oversampling of the minority class, and used to fit a CNN and LSTM model.
+
+![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_3a.png)
+![](https://github.com/mcunningham1440/protein-augmentation/blob/main/assets/fig_3b.png)
+
+***Figure 3.** Test AUC of **A** convolutional network or **B** LSTM models trained with simple oversampling or dictionary substitution. Average of 5 folds. Error bars reprsent standard error of the mean*
 
 ## Conclusion
