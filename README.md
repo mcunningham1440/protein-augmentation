@@ -50,4 +50,10 @@ For each task, the dataset was augmented with 5% dictionary substitution or simp
 
 ***Figure 3.** Test AUC of **A** convolutional network or **B** LSTM models trained with simple oversampling or dictionary substitution. Average of 5 folds. Error bars reprsent standard error of the mean*
 
+When using convolutional networks to classify the data, dictionary substitution clearly outperformed simple oversampling for the pol II transcription task, while achieving similar performance on the druggability and liver cancer tasks. For LSTMs, dictionary substitution achieved marginally superior results on pol II transcription and liver cancer but underperformed on druggability. In both model types, significant variability in the AUCs from the liver cancer task made interpeting the results difficult.
+
+Although the heterogeneity of the results 
+
 ## Conclusion
+
+Although multiple data augmentation techniques have been proposed for protein sequences, three of the most promising methods--alanine, dictionary, and nucleotide substitution have never previously been compared systematically using the same models and datasets. This study, although limited, indicates that dictionary substitution at a probability of 5% is capable of enhancing model performance across multiple binary classification tasks with two major deep learning model types, although these benefits are not universal. Alanine and nucleotide substitution, by contrast, either degraded performance or did not enhance it, respectively. Dictionary substitution should be considered when constructing deep learning classifiers using protein sequence data.
