@@ -50,9 +50,11 @@ For each task, the dataset was augmented with 5% dictionary substitution or simp
 
 ***Figure 3.** Test AUC of **A** convolutional network or **B** LSTM models trained with simple oversampling or dictionary substitution. Average of 5 folds. Error bars reprsent standard error of the mean*
 
-When using convolutional networks to classify the data, dictionary substitution clearly outperformed simple oversampling for the pol II transcription task, while achieving similar performance on the druggability and liver cancer tasks. For LSTMs, dictionary substitution achieved marginally superior results on pol II transcription and liver cancer but underperformed on druggability. In both model types, significant variability in the AUCs from the liver cancer task made interpeting the results difficult.
+When using convolutional networks to classify the data, dictionary substitution clearly outperformed simple oversampling for the pol II transcription task, while achieving similar performance on the druggability and liver cancer tasks. For LSTMs, dictionary substitution achieved marginally superior results on pol II transcription and liver cancer but underperformed on druggability. In both model types, significant variability in the AUCs from the liver cancer task made interpeting the results difficult, likely due to the small size number of positive samples resulting in the model converging towards a naive negative classifier, an interpretation supported by the unreasonably high accuracy on the imbalanced evaluation set (Supplementary table 1).
 
-Although the heterogeneity of the results 
+## Discussion
+
+<>
 
 ## Conclusion
 
